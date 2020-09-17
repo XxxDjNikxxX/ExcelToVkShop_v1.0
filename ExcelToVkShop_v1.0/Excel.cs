@@ -32,5 +32,20 @@ namespace ExcelToVkShop_v1._0
 
 
         }
+
+        public string[,] R_Range(int star_i, int star_x, int end_i, int end_x)
+        {
+            Range range = (Range)ws.Range[ws.Cells[star_i, star_x], ws.Cells[end_i, end_x]];
+            object[,] holder = range.Value;
+            string[,] returnstring = new string[end_i-star_i,end_x-star_x];
+            for(int p = 1; p <= end_i - star_i; p++)
+            {
+                for(int q = 1; q < end_x - star_x; q++)
+                {
+                    returnstring[p - 1, q - 1] = holder[p, q].ToString();
+                }
+            }
+            return returnstring;
+        }
     }
 }
